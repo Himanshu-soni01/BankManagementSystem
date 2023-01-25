@@ -102,7 +102,8 @@ def deptAmt():
         x.execute(sql,d)
         BMS.conn.commit()
     else:
-        print("PASSWORD INVALID...")
+        print("...INVALID PASSWORD...")
+        deptAmt()
     main()
 
 def withAmt():
@@ -118,6 +119,9 @@ def withAmt():
         d2=(t,ac,)
         x.execute(q2,d2)
         BMS.conn.commit()
+    else:
+        print("...INVALID PASSWORD...")
+        withAmt()
     main()
 
 def balEnq():
@@ -128,6 +132,9 @@ def balEnq():
         x.execute(q1,(ac,))
         result=x.fetchone()
         print('Balance from Account: ',ac," is ",result[0])
+    else:
+        print("...INVALID PASSWORD...")
+        balEnq()
     main()
 
 def tnfAmt():
@@ -153,6 +160,9 @@ def tnfAmt():
         d22=(r,tac,)
         x.execute(q22,d22)
         BMS.conn.commit()
+    else:
+        print("...INVALID PASSWORD...")
+        tnfAmt()
     main()
 
 def dispDet():
@@ -165,9 +175,14 @@ def dispDet():
         q1='select * from display where AccNo=(?)'
         x.execute(q1,(ac,))
         res=x.fetchall()
-        print(res)
+        for record in res:
+            print(*record,sep="|\t")
+        # print(res)
         x.execute('drop view display')
         BMS.conn.commit()
+    else:
+        print("...INVALID PASSWORD...")
+        dispDet()
     main()
 
 def closeAcc():
@@ -180,6 +195,9 @@ def closeAcc():
         x.execute(q1,d)
         x.execute(q2,d)
         BMS.conn.commit()
+    else:
+        print("...INVALID PASSWORD...")
+        closeAcc()
     main()
 
 def main():
